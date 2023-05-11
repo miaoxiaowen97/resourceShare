@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>milkCode</title>
+    <link rel="shortcut icon" href="/img/favicon.ico"/>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery.slim.min.js">
+    </script>
+    <script src="js/bootstrap.bundle.js">
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5298217722174626"
+            crossorigin="anonymous"></script>
+    <style>.search-input-hero {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 800px
+    }
+
+    .search-input-hero .search-input {
+        padding: 28px 45px 28px 55px;
+        border-radius: 50px
+    }
+
+    .search-suggestions-hero {
+        z-index: 2;
+        width: 100%;
+        margin-top: 15px;
+        line-height: 2.5;
+        text-align: center
+    }
+
+    @media (min-width: 768px) {
+        .search-suggestions-hero {
+            margin-bottom: 30px
+        }
+    }
+
+    .search-suggestions-hero .search-results-suggestion {
+        display: inline-block;
+        margin: 0 3px
+    }
+
+    .search-suggestions-hero .search-results-suggestion-heading {
+        font-family: & quot;
+        Haas Grot Text R Web & quot;, & quot;
+        Helvetica Neue & quot;, Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        color: #fff
+    }
+
+    .search-suggestions-hero a {
+        font-family: & quot;
+        Haas Grot Text R Web & quot;, & quot;
+        Helvetica Neue & quot;, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        padding: 6px 15px;
+        -webkit-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 50px;
+        color: #fff
+    }
+
+    .search-suggestions-hero a:hover {
+        border-color: white
+    }
+
+    .signed-out-masthead {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column-reverse;
+        flex-direction: column-reverse;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        padding-top: 40px;
+        padding-bottom: 40px
+    }
+
+    @media (min-width: 768px) {
+        .signed-out-masthead {
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            height: 480px;
+            padding-top: 0;
+            padding-bottom: 0
+        }
+    }
+
+    .signed-out-masthead .text-content {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -ms-flex-align: center;
+        align-items: center;
+        max-width: 624px;
+        margin-top: 20px;
+        text-align: center
+    }
+
+    @media (min-width: 768px) {
+        .signed-out-masthead .text-content {
+            -ms-flex-align: start;
+            align-items: flex-start;
+            margin-top: 0;
+            text-align: left
+        }
+    }
+
+    @media (min-width: 1600px) {
+        .signed-out-masthead .text-content {
+            margin-left: 100px
+        }
+    }
+
+    .signed-out-masthead .text-content h1 {
+        font-family: & quot;
+        Haas Grot Text R Web & quot;, & quot;
+        Helvetica Neue & quot;, Helvetica, Arial, sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 29px
+    }
+
+    @media (min-width: 768px) {
+        .signed-out-masthead .text-content h1 {
+            font-family: & quot;
+            Haas Grot Text R Web & quot;, & quot;
+            Helvetica Neue & quot;, Helvetica, Arial, sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 38px
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .signed-out-masthead .text-content h1 {
+            font-family: & quot;
+            Haas Grot Text R Web & quot;, & quot;
+            Helvetica Neue & quot;, Helvetica, Arial, sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 56px
+        }
+    }
+
+    .signed-out-masthead .text-content p {
+        margin: 16px 0
+    }
+
+    .signed-out-masthead .shot-content {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -ms-flex-align: center;
+        align-items: center;
+        width: 100%;
+        color: #9e9ea7;
+        font-family: & quot;
+        Haas Grot Text R Web & quot;, & quot;
+        Helvetica Neue & quot;, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px
+    }
+
+    @media (min-width: 768px) {
+        .signed-out-masthead .shot-content {
+            -ms-flex-align: end;
+            align-items: flex-end;
+            width: auto
+        }
+    }
+
+    .signed-out-masthead .shot-content .signed-out-masthead-image {
+        width: 100%;
+        height: 300px;
+        -o-object-fit: contain;
+        object-fit: contain
+    }
+
+    @media (min-width: 768px) {
+        .signed-out-masthead .shot-content .signed-out-masthead-image {
+            width: 400px;
+            height: 266px
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .signed-out-masthead .shot-content .signed-out-masthead-image {
+            width: 510px;
+            height: 360px
+        }
+    }
+
+    .signed-out-masthead .shot-content .user-credit {
+        margin-top: 20px
+    }
+
+    .signed-out-masthead .shot-content .user-credit-link {
+        color: #9e9ea7;
+        text-decoration: underline
+    }
+
+    .signed-out-hero {
+        position: relative;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        max-width: 100%;
+        height: 450px;
+        padding: 50px 20px;
+        overflow: hidden;
+        background: #000
+    }
+
+    @media (min-width: 768px) {
+        .signed-out-hero {
+            -ms-flex-direction: column;
+            flex-direction: column;
+            height: 560px
+        }
+    }
+
+    .signed-out-hero .hero-categories {
+        z-index: 2;
+        -ms-flex-order: 0;
+        order: 0;
+        margin-top: 0;
+        margin-bottom: 20px;
+        border: 0
+    }
+
+    .signed-out-hero .hero-categories .scroll {
+        opacity: 0;
+        pointer-events: none
+    }
+
+    .signed-out-hero .hero-category a, .signed-out-hero .hero-category.active a {
+        margin: 0;
+        padding: 10px 15px;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        border-radius: 50px;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        font-size: 14px
+    }
+
+    @media (min-width: 768px) {
+        .signed-out-hero .hero-category a, .signed-out-hero .hero-category.active a {
+            margin: 0 5px;
+            padding: 16px 20px;
+            font-size: 16px
+        }
+    }
+
+    .signed-out-hero .hero-category.active a, .signed-out-hero .hero-category a:hover {
+        background: #fff;
+        color: #000
+    }
+
+    .signed-out-hero .hero-media {
+        display: -ms-flexbox;
+        display: flex;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-filter: brightness(0.3);
+        filter: brightness(0.3);
+        -ms-flex-pack: center;
+        justify-content: center
+    }
+
+    @media (min-width: 768px) {
+        .signed-out-hero .hero-media {
+            -webkit-filter: brightness(0.4);
+            filter: brightness(0.4)
+        }
+    }
+
+    .signed-out-hero .hero-media-asset {
+        position: absolute;
+        height: 100vh;
+        -webkit-transition: all 0.8s ease-in-out;
+        transition: all 0.8s ease-in-out
+    }
+
+    .signed-out-hero .hero-media-asset.is-hidden {
+        opacity: 0
+    }
+
+    .signed-out-hero .hero-media-asset.is-visible {
+        opacity: 1
+    }
+
+    @media (min-width: 768px) {
+        .signed-out-hero .hero-media-asset {
+            width: 100vw;
+            height: auto
+        }
+    }
+
+    .signed-out-hero .hero-text-content {
+        z-index: 1;
+        margin-top: 0;
+        color: #fff
+    }
+
+    .signed-out-hero .hero-text-content .hero-text-content-h1 {
+        max-width: 500px;
+        margin: 0 auto;
+        font-size: 24px;
+        line-height: 1.25;
+        text-align: center
+    }
+
+    @media (min-width: 768px) {
+        .signed-out-hero .hero-text-content .hero-text-content-h1 {
+            font-size: 32px
+        }
+    }
+
+    .signed-out-hero .hero-text-content .hero-text-content-h2 {
+        font-size: 14px
+    }
+
+    @media (min-width: 768px) {
+        .signed-out-hero .hero-text-content .hero-text-content-h2 {
+            font-size: 16px
+        }
+    }
+
+    @media (min-width: 768px) {
+        .signed-out-hero .hero-text-content {
+            text-align: center
+        }
+    }
+
+    @media (min-width: 1600px) {
+        .signed-out-hero .hero-text-content {
+            margin-left: 0
+        }
+    }
+
+    .signed-out-hero .hero-attribution {
+        font-family: & quot;
+        Haas Grot Text R Web & quot;, & quot;
+        Helvetica Neue & quot;, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        position: absolute;
+        right: 24px;
+        bottom: 24px
+    }
+
+    .signed-out-hero .hero-attribution-link {
+        -webkit-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        opacity: 0.7;
+        color: #fff
+    }
+
+    .signed-out-hero .hero-attribution-link:hover {
+        opacity: 1
+    }
+    </style>
+</head>
+<body>
+<div style="background-color:black; height: 40px;"></div>
+<div>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
+            <a class="navbar-brand" href="#">
+                <img src="img/author.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+                程序员交个朋友
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}">首页 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/itemList}">资料库</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">小镇</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">工具</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">问一问</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" th:action="@{/search}">
+                    <input class="form-control mr-sm-2" type="search" placeholder="关键字" aria-label="Search"
+                           name="queryKey">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+
+
+<div class="container-large signed-out-masthead signed-out-hero js-signed-out-masthead">
+    <div class="hero-categories filter-categories js-filter-categories js-shot-categories">
+    <span class="scroll scroll-backward"><a class="d-none" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                         height="24" viewBox="0 0 24 24" fill="none"
+                                                                         role="img" class="icon ">
+<path d="M21.5265 8.77171C22.1578 8.13764 22.1578 7.10962 21.5265 6.47555C20.8951 5.84148 19.8714 5.84148 19.24 6.47555L11.9999 13.7465L4.75996 6.47573C4.12858 5.84166 3.10492 5.84166 2.47354 6.47573C1.84215 7.10979 1.84215 8.13782 2.47354 8.77188L10.8332 17.1671C10.8408 17.1751 10.8486 17.183 10.8565 17.1909C11.0636 17.399 11.313 17.5388 11.577 17.6103C11.5834 17.6121 11.5899 17.6138 11.5964 17.6154C12.132 17.7536 12.7242 17.6122 13.1435 17.1911C13.1539 17.1807 13.1641 17.1702 13.1742 17.1596L21.5265 8.77171Z"></path>
+</svg>
+</a></span>
+        <span class="scroll scroll-forward"><a class="" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                      height="24" viewBox="0 0 24 24" fill="none"
+                                                                      role="img" class="icon ">
+<path d="M21.5265 8.77171C22.1578 8.13764 22.1578 7.10962 21.5265 6.47555C20.8951 5.84148 19.8714 5.84148 19.24 6.47555L11.9999 13.7465L4.75996 6.47573C4.12858 5.84166 3.10492 5.84166 2.47354 6.47573C1.84215 7.10979 1.84215 8.13782 2.47354 8.77188L10.8332 17.1671C10.8408 17.1751 10.8486 17.183 10.8565 17.1909C11.0636 17.399 11.313 17.5388 11.577 17.6103C11.5834 17.6121 11.5899 17.6138 11.5964 17.6154C12.132 17.7536 12.7242 17.6122 13.1435 17.1911C13.1539 17.1807 13.1641 17.1702 13.1742 17.1596L21.5265 8.77171Z"></path>
+</svg>
+</a></span>
+
+    </div>
+
+    <div class="hero-media" id="hero-media">
+        <video class="hero-media-asset is-visible" autoplay="" muted="" loop="" playsinline="" data-hero-video=""
+               data-src-lg="https://cdn.dribbble.com/uploads/39417/original/49dbf46eae15d227fc95a69cee31251e.mp4?1657824906"
+               data-src-sm="https://cdn.dribbble.com/uploads/39418/original/0cc960a3bf612d0badc4f6165eb36f7b.mp4?1657824915">
+            <source src="https://cdn.dribbble.com/uploads/39418/original/0cc960a3bf612d0badc4f6165eb36f7b.mp4?1657824915"
+                    type="video/mp4">
+        </video>
+    </div>
+
+    <div class="text-content hero-text-content d-flex justify-content-center">
+        <h1 class="hero-text-content-h1">程序员交个朋友</h1>
+        <br> <br>
+        <h2 class="hero-text-content-h2 font-body margin-v-16">本站所有资源均来源于互联网，全部免费！部分具有时效性！</h2>
+    </div>
+
+    <div class="search-input-hero search-input-with-dropdown d-flex justify-content-center">
+        <form th:action="@{/search}" class="js-search-input-form search-input-form" method="get">
+            <input id="search" type="search" name="queryKey" placeholder="输入关键字回车" value=""
+                   class="search-input js-search-input">
+        </form>
+    </div>
+
+<div class="row">
+    <ul class="search-suggestions-hero search-results-suggestions">
+        <li class="search-results-suggestion search-results-suggestion-heading" style="padding-top: 0.5%">
+            <h6 >热门搜索：</h6>
+        </li>
+        <li class="search-results-suggestion">
+            <a href="search?queryKey=抖音">抖音</a>
+        </li>
+        <li class="search-results-suggestion">
+            <a href="search?queryKey=影视">影视</a>
+        </li>
+        <li class="search-results-suggestion">
+            <a href="search?queryKey=去水印">去水印</a>
+        </li>
+    </ul>
+</div>
+
+</div>
+
+<div class="container-fluid" style="padding-top: 2%">
+    <div>
+        <button type="button" class="btn btn-primary">
+            最新发布 <span class="badge badge-light">4</span>
+        </button>
+    </div>
+    <div class="row">
+        <div class=" col-sm-3" style="padding-top: 2%;" th:each="item : ${itemList}">
+            <div class="card mb-3" style="height: 100%;border: none;">
+                <a th:href="@{/item(itemId=${(item.id)})}" style="text-decoration: none;color: #000">
+                <img th:src="@{${item.coverUrl}}" class="card-img-top" style="border-radius: 10px">
+                <h5 class="card-title" th:text="${item.title}"></h5>
+                </a>
+                <div style="padding-left:1% " class="d-flex bd-highlight mb-3">
+                    <div  class="p-2 bd-highlight">
+                        <img src="img/author.jpg" width="30" height="30" class="d-inline-block align-top" style="border-radius: 50px">
+                    </div>
+                    <div  class="p-2 bd-highlight">
+                        <p class="card-text" style="float: right"><small class="text-muted">[[${item.author}]]</small></p>
+                    </div>
+                    <div  class="ml-auto p-2 bd-highlight">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                        </svg>200
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                        </svg>
+                        600
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    ((function () {
+        var callbacks = [],
+            timeLimit = 50,
+            open = false;
+        setInterval(loop, 1);
+        return {
+            addListener: function (fn) {
+                callbacks.push(fn);
+            },
+            cancleListenr: function (fn) {
+                callbacks = callbacks.filter(function (v) {
+                    return v !== fn;
+                });
+            }
+        }
+
+        function loop() {
+            var startTime = new Date();
+            debugger;
+            if (new Date() - startTime > timeLimit) {
+                if (!open) {
+                    callbacks.forEach(function (fn) {
+                        fn.call(null);
+                    });
+                }
+                open = true;
+                window.stop();
+                alert('讨厌，不要扒我皮了，人家好害羞的！');
+                window.location.reload();
+            } else {
+                open = false;
+            }
+        }
+    })()).addListener(function () {
+        window.location.reload();
+    });
+</script>
+</body>
+</html>

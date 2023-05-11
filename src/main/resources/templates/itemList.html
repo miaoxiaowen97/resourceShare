@@ -1,0 +1,167 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN">
+<head>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>milkCode</title>
+    <link rel="shortcut icon" href="/img/favicon.ico" />
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery.slim.min.js">
+    </script>
+    <script src="js/bootstrap.bundle.js">
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5298217722174626"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div style="background-color:black; height: 40px;"></div>
+<div >
+    <div >
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
+            <a class="navbar-brand" href="#">
+                <img src="img/author.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+                程序员交个朋友
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}">首页 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"th:href="@{/itemList}">资料库</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"href="#">小镇</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"href="#">工具</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"href="#">问一问</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" th:action="@{/search}">
+                    <input class="form-control mr-sm-2" type="search" placeholder="关键字" aria-label="Search" name="queryKey">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div>
+        <div class="btn-group" style="padding-top: 2%">
+                <button type="button" class="btn btn-primary">
+                    资源 <span class="badge badge-light">总共 [[${pageInfo.pageCount}*${pageInfo.pageSize}]] 条</span>
+                </button>
+        </div>
+        <div class="row">
+            <div class=" col-sm-3" style="padding-top: 2%;" th:if="${itemList.size()==0}">
+                该关键字查无结果
+            </div>
+            <div class=" col-sm-3" style="padding-top: 2%;" th:if="${itemList.size()>0}" th:each="item : ${itemList}">
+                <div class="card mb-3" style="height: 100%;border: none;">
+                    <a th:href="@{/item(itemId=${(item.id)})}" style="text-decoration: none;color: #000">
+                        <img th:src="@{${item.coverUrl}}" class="card-img-top" style="border-radius: 10px">
+                        <h5 class="card-title" th:text="${item.title}"></h5>
+                    </a>
+                    <div style="padding-left:1% " class="d-flex bd-highlight mb-3">
+                        <div  class="p-2 bd-highlight">
+                            <img src="img/author.jpg" width="30" height="30" class="d-inline-block align-top" style="border-radius: 50px">
+                        </div>
+                        <div  class="p-2 bd-highlight">
+                            <p class="card-text" style="float: right"><small class="text-muted">[[${item.author}]]</small></p>
+                        </div>
+                        <div  class="ml-auto p-2 bd-highlight">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                            </svg>200
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                            </svg>
+                            600
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="padding-top: 4%;" class="d-flex justify-content-center">
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item " style="width: 90px">
+                        <span class="page-link">[[${pageInfo.pageIndex}]] / [[${pageInfo.pageCount}]]</span>
+                    </li>
+
+                    <li th:if="${pageInfo.pageIndex==1}" class="page-item disabled"
+                        style="padding-left: 3%;width: 120px">
+                        <a class="page-link">上一页</a>
+                    </li>
+
+                    <li th:if="${pageInfo.pageIndex>1}" class="page-item " style="padding-left: 3%;width: 120px">
+                        <a class="page-link" th:href="@{/itemList(pageIndex=${(pageInfo.pageIndex)-1})}">上一页</a>
+                    </li>
+
+                    <li th:if="${pageInfo.pageIndex==pageInfo.pageCount}" class="page-item disabled"
+                        style="padding-left: 3%;width: 120px">
+                        <a class="page-link">下一页</a>
+                    </li>
+
+                    <li th:if="${pageInfo.pageIndex<pageInfo.pageCount}" class="page-item "
+                        style="padding-left: 3%;width: 120px">
+                        <a class="page-link" th:href="@{/itemList(pageIndex=${(pageInfo.pageIndex)+1})}">下一页</a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<script >
+    ((function() {
+        var callbacks = [],
+            timeLimit = 50,
+            open = false;
+        setInterval(loop, 1);
+        return {
+            addListener: function(fn) {
+                callbacks.push(fn);
+            },
+            cancleListenr: function(fn) {
+                callbacks = callbacks.filter(function(v) {
+                    return v !== fn;
+                });
+            }
+        }
+        function loop() {
+            var startTime = new Date();
+            debugger;
+            if (new Date() - startTime > timeLimit) {
+                if (!open) {
+                    callbacks.forEach(function(fn) {
+                        fn.call(null);
+                    });
+                }
+                open = true;
+                window.stop();
+                alert('讨厌，不要扒我皮了，人家好害羞的！');
+                window.location.reload();
+            } else {
+                open = false;
+            }
+        }
+    })()).addListener(function() {
+        window.location.reload();
+    });
+</script>
+</body>
+</html>

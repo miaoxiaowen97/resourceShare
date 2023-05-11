@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>milkCode</title>
+        <link rel="shortcut icon" href="/img/favicon.ico" />
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery.slim.min.js">
+    </script>
+    <script src="js/bootstrap.bundle.js">
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5298217722174626"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div style="background-color:black; height: 40px;"></div>
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
+        <a class="navbar-brand" href="#">
+            <img src="img/author.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+            程序员交个朋友
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}">首页 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/itemList}">资料库</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">小镇</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">工具</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">问一问</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" th:action="@{/search}">
+                <input class="form-control mr-sm-2" type="search" placeholder="关键字" aria-label="Search"
+                       name="queryKey">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+            </form>
+        </div>
+    </nav>
+</div>
+<div class="container-fluid">
+    <div>
+        <div>
+            <div class="d-flex flex-column bd-highlight mb-3"
+                 style="background: url(img/itemBack.jpg) no-repeat content-box;background-size: 100% 100% ;height: 100%; width: 100%;">
+                <div class="d-flex justify-content-start" style="padding-top: 2%; padding-left: 2%;">
+                    <div style="padding-bottom: 1%;">
+                        <h3 style="color: white;">[[${itemInfo.title}]]</h3>
+                        <h6 style="color: white;">[[${itemInfo.author}]]&nbsp; &nbsp; [[${itemInfo.createTime}]]</h6>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class=" col-sm-6" style="padding-top: 2%;">
+                        <h4 style="color: blue;">| 图片</h4>
+                        <img th:each="url : ${itemInfo.picUrlList}" th:src="@{${url}}" class="card-img-top">
+                    </div>
+                    <div class="col-sm-6" style="padding-top: 2%;">
+                        <h4 style="color: blue;">| 描述</h4>
+                        <p> [[${itemInfo.content}]] </p>
+                        <br/>
+                        <h4 style="color: blue;">| 标签：</h4>
+                        <div class="row">
+                            <div style="padding-top: 1%" class="col-sm-3">
+                                <button type="button" class="btn btn-primary">有用的知识</button>
+                            </div>
+                            <div style="padding-top: 1%" class="col-sm-3">
+                                <button type="button" class="btn btn-success">生产力工具</button>
+                            </div>
+                            <div style="padding-top: 1%" class="col-sm-3">
+                                <button type="button" class="btn btn-secondary" >太好用了</button>
+                            </div>
+                            <div style="padding-top: 1%" class="col-sm-3">
+                                <button type="button" class="btn btn-danger">值得推荐</button>
+                            </div>
+                            <div style="padding-top: 1%" class="col-sm-3">
+                                <button type="button" class="btn btn-warning">效率翻倍</button>
+                            </div>
+                            <div style="padding-top: 1%" class="col-sm-3">
+                                <button type="button" class="btn btn-secondary">有趣的工具</button>
+                            </div>
+                        </div>
+                        <br/>
+                        <h4 style="color: blue;">| 地址</h4>
+                        <p th:each="url : ${itemInfo.resourceUrlList}">
+                            [[${url}]]
+                        </p>
+                        <h4 style="color: blue;">| 声明和投稿</h4>
+                        <p>
+                            1.转载请保留原文链接谢谢！
+                            <br>
+                            2.本站所有资源文章出自互联网收集整理，本站不参与制作，如果侵犯了您的合法权益，请联系本站我们会及时删除。
+                            <br>
+                            3.本站发布资源来源于互联网，可能存在水印或者引流等信息，请用户擦亮眼睛自行鉴别，做一个有主见和判断力的用户。
+                            <br>
+                            4.本站资源仅供研究、学习交流之用，若使用商业用途，请购买正版授权，否则产生的一切后果将由下载用户自行承担。
+                            <br>
+                            5.联系方式：milkcode@163.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script >
+    ((function() {
+        var callbacks = [],
+            timeLimit = 50,
+            open = false;
+        setInterval(loop, 1);
+        return {
+            addListener: function(fn) {
+                callbacks.push(fn);
+            },
+            cancleListenr: function(fn) {
+                callbacks = callbacks.filter(function(v) {
+                    return v !== fn;
+                });
+            }
+        }
+        function loop() {
+            var startTime = new Date();
+            debugger;
+            if (new Date() - startTime > timeLimit) {
+                if (!open) {
+                    callbacks.forEach(function(fn) {
+                        fn.call(null);
+                    });
+                }
+                open = true;
+                window.stop();
+                alert('讨厌，不要扒我皮了，人家好害羞的！');
+                window.location.reload();
+            } else {
+                open = false;
+            }
+        }
+    })()).addListener(function() {
+        window.location.reload();
+    });
+</script>
+</body>
+</html>
