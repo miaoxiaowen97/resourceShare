@@ -2,10 +2,12 @@
 //
 //
 //import com.alibaba.fastjson.JSON;
+//import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 //import com.mxw.ResourceShareApplication;
 //import com.mxw.dto.PageInfo;
 //import com.mxw.dto.ResourceItemDTO;
 //import com.mxw.entity.Resource;
+//import com.mxw.mapper.ResourceMapper;
 //import com.mxw.service.ResourceService;
 //import org.jsoup.Jsoup;
 //import org.jsoup.nodes.Attributes;
@@ -64,13 +66,17 @@
 //        // 爬取封面
 //
 //    }
+//    @Autowired
+//    private ResourceMapper resourceMapper;
 //
 //    @Test
 //    public  void index() throws Exception {
-//        for (int j = 13; j<51 ; j++) {
+//        for (int j = 28; j<30 ; j++) {
 //            String url="https://www.ahhhhfs.com/page/"+j+"/";
 //            System.out.println(url);
-//            Document doc = Jsoup.connect(url).get();
+//            HashMap<String, String> headers = new HashMap<>();
+//            headers.put("user-agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.54");
+//            Document doc = Jsoup.connect(url).headers(headers).get();
 //            // 获取带有 href 属性的 a 元素
 //            Elements elementsByClass = doc.getElementsByClass("module posts-wrapper list");
 //            Element element = elementsByClass.get(0);
@@ -107,17 +113,27 @@
 //                String title = urlMap.get(s);
 //                Resource resource = new Resource();
 //                resource.setTitle(title);
+//                LambdaQueryWrapper<Resource> resourceLambdaQueryWrapper = new LambdaQueryWrapper<>();
+//                resourceLambdaQueryWrapper.eq(Resource::getTitle,resource.getTitle());
+//                Resource resource1 = resourceMapper.selectOne(resourceLambdaQueryWrapper);
+//                if (Objects.nonNull(resource1)){
+//                    System.out.println("已存在直接跳过");
+//                    continue;
+//                }
 //                String coverUrl = coverUrlMap.getOrDefault(title, "");
 //                resource.setAuthor("牛奶喵");
 //                // 详情
 //                info(s,resource,title,test);
 //                System.out.println(title+"==>保存成功");
+//
 //                // 文件命名
 //                String[] split = coverUrl.split("/");
 //                String fileName = split[split.length - 1];
+//                fileName = fileName.replace(" ", "");
 //                resource.setCoverUrl(fileName);
-//                resourceService.saveOne(resource);
-//
+//                resource.setViewCount(1L);
+//                resource.setLikeCount((long) (Math.random()*100));
+//                resourceMapper.insert(resource);
 //                System.out.println("开始下载封面图=》"+fileName);
 //                test.httpsToGet(coverUrl,fileName);
 //                System.out.println("下载成功");
@@ -126,8 +142,10 @@
 //    }
 //
 //    public void  info(String url,Resource resource,String title,BatchDownloadFileTest test) throws Exception {
+//        HashMap<String, String> headers = new HashMap<>();
+//        headers.put("user-agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.54");
 //
-//        Document infoDoc = Jsoup.connect(url).get();
+//        Document infoDoc = Jsoup.connect(url).headers(headers).get();
 //        Elements infoDocElementsByClass = infoDoc.getElementsByClass("entry-content u-text-format u-clearfix");
 //        Element element = infoDocElementsByClass.get(0);
 //        StringBuilder builder = new StringBuilder();
@@ -172,7 +190,9 @@
 //        Set<String> picNameList = new HashSet<>();
 //        int i=0;
 //        for (String pic : picUrlList) {
+//
 //            String fileName = title+i+".jpg";
+//            fileName = fileName.replace(" ", "");
 //            System.out.println("开始下载资源图=》"+fileName);
 //            picNameList.add(fileName);
 //            test.httpsToGet(pic,fileName);

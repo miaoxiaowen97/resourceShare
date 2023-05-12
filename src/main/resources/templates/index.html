@@ -222,7 +222,7 @@
         -ms-flex-pack: justify;
         justify-content: space-between;
         max-width: 100%;
-        height: 450px;
+        height: 400px;
         padding: 50px 20px;
         overflow: hidden;
         background: #000
@@ -386,9 +386,8 @@
     </style>
 </head>
 <body>
-<div style="background-color:black; height: 40px;"></div>
 <div>
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
             <a class="navbar-brand" href="#">
                 <img src="img/author.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
                 程序员交个朋友
@@ -408,7 +407,7 @@
                         <a class="nav-link" th:href="@{/itemList}">资料库</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">小镇</a>
+                        <a class="nav-link" th:href="@{/circle}">程序员的圈子</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">工具</a>
@@ -424,8 +423,7 @@
                 </form>
             </div>
         </nav>
-    </div>
-
+</div>
 
 <div class="container-large signed-out-masthead signed-out-hero js-signed-out-masthead">
     <div class="hero-categories filter-categories js-filter-categories js-shot-categories">
@@ -485,13 +483,8 @@
 
 </div>
 
-<div class="container-fluid" style="padding-top: 2%">
-    <div>
-        <button type="button" class="btn btn-primary">
-            最新发布 <span class="badge badge-light">4</span>
-        </button>
-    </div>
-    <div class="row">
+<div class="container-fluid" style="padding-top: 2%;background-color: rgb(240, 243, 245);">
+    <div class="row" style="background-color: white;padding-top: 2%">
         <div class=" col-sm-3" style="padding-top: 2%;" th:each="item : ${itemList}">
             <div class="card mb-3" style="height: 100%;border: none;">
                 <a th:href="@{/item(itemId=${(item.id)})}" style="text-decoration: none;color: #000">

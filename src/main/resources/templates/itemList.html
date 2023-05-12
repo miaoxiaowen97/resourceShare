@@ -16,7 +16,6 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<div style="background-color:black; height: 40px;"></div>
 <div >
     <div >
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
@@ -39,7 +38,7 @@
                         <a class="nav-link"th:href="@{/itemList}">资料库</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"href="#">小镇</a>
+                        <a class="nav-link" th:href="@{/circle}">程序员的圈子</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"href="#">工具</a>
@@ -57,14 +56,14 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid" style="background-color: rgb(240, 243, 245);">
     <div>
-        <div class="btn-group" style="padding-top: 2%">
+        <div class="btn-group" style="padding-top: 2%;padding-bottom: 2%">
                 <button type="button" class="btn btn-primary">
                     资源 <span class="badge badge-light">总共 [[${pageInfo.pageCount}*${pageInfo.pageSize}]] 条</span>
                 </button>
         </div>
-        <div class="row">
+        <div class="row" style="background-color: white">
             <div class=" col-sm-3" style="padding-top: 2%;" th:if="${itemList.size()==0}">
                 该关键字查无结果
             </div>

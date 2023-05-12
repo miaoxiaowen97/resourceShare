@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>milkCode</title>
+    <link rel="shortcut icon" href="/img/favicon.ico" />
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery.slim.min.js">
+    </script>
+    <script src="js/bootstrap.bundle.js">
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5298217722174626"
+            crossorigin="anonymous"></script>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body style="background-color: rgb(240, 243, 245);">
+<div id="app">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
+            <a class="navbar-brand" href="#">
+                <img src="img/author.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+                程序员交个朋友
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}">首页 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/itemList}">资料库</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/circle}">程序员的圈子</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">工具</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">问一问</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" th:action="@{/search}">
+                    <input class="form-control mr-sm-2" type="search" placeholder="关键字" aria-label="Search"
+                           name="queryKey">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+    <div class="container p-5">
+        <div class="row">
+            <div class="col-8" style="background-color: white">
+                <div class="row my-3">
+                    <div class="col-2 my-2">
+                        <div style="padding-left: 30%;"><img src="img/author.jpg" width="40" height="40"
+                                                             class="d-inline-block align-top" style="border-radius: 50px"></div>
+                    </div>
+                    <div class="col-10">
+                        <div>
+                            <div>
+                                作者
+                            </div>
+                            <div style="padding-top: 1%;">
+                                46分钟
+                            </div>
+                        </div>
+                        <div style="padding-top: 2%;">
+                            秩序就是东西应该在它该在的地方，情绪、关系、事项按照可预期的方式进行，比真理更重要的，是选择一种规训里的规则，来降低活在世界上的运营成本
+
+                            <div style="padding-top: 2%; width: 30%;">
+                                <el-tag type="success">标签二</el-tag>
+                            </div>
+                        </div>
+                        <div style="padding-top: 3%;" class="row">
+
+                            <div class="col-3">
+                                <div style="width: 30px; height: 30px;">
+                                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                         class="w-full h-full">
+                                        <path
+                                                d="M11 2C9.46007 2 8.181 5.17764 7.22851 7.06319C7.09115 7.33509 6.81055 7.5 6.50592 7.5H4.5C3.39543 7.5 2.5 8.39543 2.5 9.5V15C2.5 16.1046 3.39543 17 4.5 17H13.8013C15.1102 17 16.268 16.1515 16.6621 14.9034L18.1782 10.1023C18.5853 8.81322 17.6231 7.5 16.2713 7.5H13.3099C12.6996 7.5 12.2976 6.8631 12.4903 6.28403C13.4157 3.50356 12.4656 2 11 2Z"
+                                                stroke="currentColor" stroke-width="1.5"></path>
+                                        <line x1="6.75" y1="7" x2="6.75" y2="17" stroke="currentColor"
+                                              stroke-width="1.5"></line>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div style="width: 30px; height: 30px;">
+                                    <svg width="30" height="30" viewBox="0 0 20 20" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg"
+                                         class="w-full h-full max-w-[20px] max-h-[20px]">
+                                        <path
+                                                d="M17.5 12.9167C17.5 13.3587 17.3244 13.7826 17.0118 14.0952C16.6993 14.4078 16.2754 14.5834 15.8333 14.5834H5.83333L3.35355 17.0631C3.03857 17.3781 2.5 17.155 2.5 16.7096V4.58335C2.5 4.14133 2.67559 3.7174 2.98816 3.40484C3.30072 3.09228 3.72464 2.91669 4.16667 2.91669H15.8333C16.2754 2.91669 16.6993 3.09228 17.0118 3.40484C17.3244 3.7174 17.5 4.14133 17.5 4.58335V12.9167Z"
+                                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round"></path>
+                                    </svg>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <el-divider></el-divider>
+                </div>
+
+                <div class="row my-3">
+                    <div class="col-2 my-2">
+                        <div style="padding-left: 30%;"><img src="img/author.jpg" width="40" height="40"
+                                                             class="d-inline-block align-top" style="border-radius: 50px"></div>
+                    </div>
+                    <div class="col-10">
+                        <div>
+                            <div>
+                                作者
+                            </div>
+                            <div style="padding-top: 1%;">
+                                46分钟
+                            </div>
+                        </div>
+                        <div style="padding-top: 2%;">
+                            秩序就是东西应该在它该在的地方，情绪、关系、事项按照可预期的方式进行，比真理更重要的，是选择一种规训里的规则，来降低活在世界上的运营成本
+
+                            <div style="padding-top: 2%; width: 30%;">
+                                <el-tag type="success">标签二</el-tag>
+                            </div>
+                        </div>
+                        <div style="padding-top: 3%;" class="row">
+
+                            <div class="col-3">
+                                <div style="width: 30px; height: 30px;">
+                                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                         class="w-full h-full">
+                                        <path
+                                                d="M11 2C9.46007 2 8.181 5.17764 7.22851 7.06319C7.09115 7.33509 6.81055 7.5 6.50592 7.5H4.5C3.39543 7.5 2.5 8.39543 2.5 9.5V15C2.5 16.1046 3.39543 17 4.5 17H13.8013C15.1102 17 16.268 16.1515 16.6621 14.9034L18.1782 10.1023C18.5853 8.81322 17.6231 7.5 16.2713 7.5H13.3099C12.6996 7.5 12.2976 6.8631 12.4903 6.28403C13.4157 3.50356 12.4656 2 11 2Z"
+                                                stroke="currentColor" stroke-width="1.5"></path>
+                                        <line x1="6.75" y1="7" x2="6.75" y2="17" stroke="currentColor"
+                                              stroke-width="1.5"></line>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <div style="width: 30px; height: 30px;">
+                                    <svg width="30" height="30" viewBox="0 0 20 20" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg"
+                                         class="w-full h-full max-w-[20px] max-h-[20px]">
+                                        <path
+                                                d="M17.5 12.9167C17.5 13.3587 17.3244 13.7826 17.0118 14.0952C16.6993 14.4078 16.2754 14.5834 15.8333 14.5834H5.83333L3.35355 17.0631C3.03857 17.3781 2.5 17.155 2.5 16.7096V4.58335C2.5 4.14133 2.67559 3.7174 2.98816 3.40484C3.30072 3.09228 3.72464 2.91669 4.16667 2.91669H15.8333C16.2754 2.91669 16.6993 3.09228 17.0118 3.40484C17.3244 3.7174 17.5 4.14133 17.5 4.58335V12.9167Z"
+                                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                                stroke-linejoin="round"></path>
+                                    </svg>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <el-divider></el-divider>
+                </div>
+            </div>
+
+            <div class="col-4 d-none d-lg-block">
+
+                <div>
+                    <div
+                            style="height: 128px;background-color: antiquewhite;border-top-right-radius: 20px;border-top-left-radius: 20px;">
+                        <div style="padding-top: 30%; padding-left: 5%;">
+                            <img src="img/author.jpg" width="60" height="60" class="d-inline-block align-top"
+                                 style="border-radius: 50px;">
+                        </div>
+                    </div>
+                    <div
+                            style="padding-top: 10%;padding-left: 3%;height: 100px ;background-color: white;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
+                        <div>昵称</div>
+                        <div>8 关注 | 10 喜欢</div>
+                    </div>
+
+                </div>
+                <div style="padding-top: 5%;">
+                    <div style="height:300px ;background-color:white;">
+                        <div style="padding-top: 2% ; padding-left: 3%;"> 最受欢迎程序员</div>
+                        <el-divider></el-divider>
+                        <div class="row">
+                            <div class="col-2">
+                                <div style="padding-left: 60%;"><img src="img/author.jpg" width="30" height="30"
+                                                                     class="d-inline-block align-top" style="border-radius: 50px;"></div>
+
+                            </div>
+                            <div class="col-10">
+                                <div> 牛奶喵</div>
+                                <div> 成长1.高质量信息2.有挑战的环境3.机会</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<style>
+
+</style>
+
+<!-- import Vue before Element -->
+<script src="js/vue.js"></script>
+<!-- import JavaScript -->
+<script src="js/index.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: function() {
+            return {
+                count: 10,
+                loading: false
+            }
+        },
+        computed: {
+            noMore() {
+                return this.count >= 20
+            },
+            disabled() {
+                return this.loading || this.noMore
+            }
+        },
+        methods: {
+            load() {
+                this.loading = true
+                setTimeout(() => {
+                    this.count += 2
+                    this.loading = false
+                }, 2000)
+            }
+        }
+    })
+</script>
+</html>
