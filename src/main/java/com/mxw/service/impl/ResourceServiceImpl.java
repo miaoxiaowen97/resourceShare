@@ -46,6 +46,7 @@ public class ResourceServiceImpl implements ResourceService {
         Page<ResourceItemDTO> dtoPage = new Page<>();
 
         LambdaQueryWrapper<Resource> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.orderByDesc(Resource::getId);
         Page<Resource> resourcePage = resourceMapper.selectPage(new Page<>(pageInfo.getPageIndex(),pageInfo.getPageSize()), queryWrapper);
         List<Resource> records = resourcePage.getRecords();
 
