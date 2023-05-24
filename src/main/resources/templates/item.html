@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>milkCode</title>
-        <link rel="shortcut icon" href="/img/favicon.ico" />
+    <link rel="shortcut icon" href="/img/favicon.ico"/>
     <link rel="stylesheet" href="css/bootstrap.css">
     <script src="js/jquery.slim.min.js">
     </script>
@@ -14,7 +14,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5298217722174626"
             crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="background-color: rgb(240, 243, 245);">
 <div>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
         <a class="navbar-brand" href="#">
@@ -53,55 +53,47 @@
         </div>
     </nav>
 </div>
-<div class="container-fluid">
-    <div>
-        <div>
-            <div class="d-flex flex-column bd-highlight mb-3"
-                 style="background: url(img/itemBack.jpg) no-repeat content-box;background-size: 100% 100% ;height: 100%; width: 100%;">
-                <div class="d-flex justify-content-start" style="padding-top: 2%; padding-left: 2%;">
-                    <div style="padding-bottom: 1%;">
-                        <h3 style="color: white;">[[${itemInfo.title}]]</h3>
-                        <h6 style="color: white;">[[${itemInfo.author}]]&nbsp; &nbsp; [[${itemInfo.createTime}]]</h6>
+<div class="container" style="padding-top: 2%;">
+    <div class="row">
+        <div class="col-lg-8 " style="background-color: white">
+            <div class="row my-3">
+                <div class="col-12">
+                    <div>
+                        <div>
+                            <h3 style="color: black;">[[${itemInfo.title}]]</h3>
+                        </div>
+                        <div style="padding-top: 1%;">
+                            [[${itemInfo.author}]] &nbsp;&nbsp;发布于:&nbsp;[[${itemInfo.createTime}]]
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div>
-                <div class="row">
-                    <div class=" col-sm-6" style="padding-top: 2%;">
-                        <h4 style="color: blue;">| 图片</h4>
+                    <hr align=center color=#987cb9SIZE=1>
+                    <div style="padding-top: 2%;">
+                        <h4 style="color: black;">描述</h4>
+                        <p>[[${itemInfo.content}]] </p>
+                    </div>
+                    <div style="padding-top: 2%;">
+                        <h4 style="color: black;">图片</h4>
                         <img th:each="url : ${itemInfo.picUrlList}" th:src="@{${url}}" class="card-img-top">
                     </div>
-                    <div class="col-sm-6" style="padding-top: 2%;">
-                        <h4 style="color: blue;">| 描述</h4>
-                        <p> [[${itemInfo.content}]] </p>
-                        <br/>
-                        <h4 style="color: blue;">| 标签：</h4>
-                        <div class="row">
-                            <div style="padding-top: 1%" class="col-sm-3">
-                                <button type="button" class="btn btn-primary">有用的知识</button>
-                            </div>
-                            <div style="padding-top: 1%" class="col-sm-3">
-                                <button type="button" class="btn btn-success">生产力工具</button>
-                            </div>
-                            <div style="padding-top: 1%" class="col-sm-3">
-                                <button type="button" class="btn btn-secondary" >太好用了</button>
-                            </div>
-                            <div style="padding-top: 1%" class="col-sm-3">
-                                <button type="button" class="btn btn-danger">值得推荐</button>
-                            </div>
-                            <div style="padding-top: 1%" class="col-sm-3">
-                                <button type="button" class="btn btn-warning">效率翻倍</button>
-                            </div>
-                            <div style="padding-top: 1%" class="col-sm-3">
-                                <button type="button" class="btn btn-secondary">有趣的工具</button>
-                            </div>
+                    <div style="padding-top: 2%;">
+                        <h4 style="color: black;">标签</h4>
+
+                        <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                            <button type="button" class="btn btn-primary btn-sm">有用的知识</button>
+                            <button type="button" class="btn btn-success btn-sm">生产力工具</button>
+                            <button type="button" class="btn btn-danger btn-sm">值得推荐</button>
+                            <button type="button" class="btn btn-warning btn-sm">效率翻倍</button>
+                            <button type="button" class="btn btn-secondary btn-sm">有趣的工具</button>
                         </div>
-                        <br/>
-                        <h4 style="color: blue;">| 地址</h4>
+                    </div>
+                    <div style="padding-top: 2%;">
+                        <h4 style="color: black;">地址</h4>
                         <p th:each="url : ${itemInfo.resourceUrlList}">
                             [[${url}]]
                         </p>
-                        <h4 style="color: blue;">| 声明和投稿</h4>
+                    </div>
+                    <div style="padding-top: 2%;">
+                        <h4 style="color: black;">声明和投稿</h4>
                         <p>
                             1.转载请保留原文链接谢谢！
                             <br>
@@ -115,46 +107,105 @@
                         </p>
                     </div>
                 </div>
+
             </div>
         </div>
+        <div class="col-lg-4 d-none d-lg-block">
+            <div>
+                <div
+                        style="height: 128px;background-color: antiquewhite;border-top-right-radius: 20px;border-top-left-radius: 20px;">
+                    <div style="padding-top: 15%; padding-left: 5%;">
+                        <img src="img/author.jpg" width="60" height="60" class="d-inline-block align-top"
+                             style="border-radius: 50px;">
+                    </div>
+                </div>
+                <div
+                        style="padding-top: 5%;padding-left: 3%;height: 100px ;background-color: white;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
+                    <div style="padding-bottom: 2%;">牛奶喵</div>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                        <button type="button" class="btn btn-primary btn-sm">分享达人</button>
+                        <button type="button" class="btn btn-danger btn-sm">大神级程序员</button>
+                    </div>
+
+                </div>
+
+            </div>
+            <div style="padding-top: 5%;">
+                <div style="height:300px ;background-color:white;">
+                    <div style="padding-top: 2% ; padding-left: 3%;"> 他的最新发布资源</div>
+                    <hr align=center color=#987cb9SIZE=1>
+                    <div class="row">
+                        <div class="col-2">
+                            <div style="padding-left: 60%;"><img src="img/author.jpg" width="30" height="30"
+                                                                 class="d-inline-block align-top"
+                                                                 style="border-radius: 50px;"></div>
+                        </div>
+                        <div class="col-10">
+                            <div> 成长1.高质量信息2.有挑战的环境3.机会</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <div style="padding-left: 60%;"><img src="img/author.jpg" width="30" height="30"
+                                                                 class="d-inline-block align-top"
+                                                                 style="border-radius: 50px;"></div>
+                        </div>
+                        <div class="col-10">
+                            <div> 成长1.高质量信息2.有挑战的环境3.机会</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <div style="padding-left: 60%;"><img src="img/author.jpg" width="30" height="30"
+                                                                 class="d-inline-block align-top"
+                                                                 style="border-radius: 50px;"></div>
+                        </div>
+                        <div class="col-10">
+                            <div> 成长1.高质量信息2.有挑战的环境3.机会</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            ((function () {
+                var callbacks = [],
+                    timeLimit = 50,
+                    open = false;
+                setInterval(loop, 1);
+                return {
+                    addListener: function (fn) {
+                        callbacks.push(fn);
+                    },
+                    cancleListenr: function (fn) {
+                        callbacks = callbacks.filter(function (v) {
+                            return v !== fn;
+                        });
+                    }
+                }
+
+                function loop() {
+                    var startTime = new Date();
+                    debugger;
+                    if (new Date() - startTime > timeLimit) {
+                        if (!open) {
+                            callbacks.forEach(function (fn) {
+                                fn.call(null);
+                            });
+                        }
+                        open = true;
+                        window.stop();
+                        alert('讨厌，不要扒我皮了，人家好害羞的！');
+                        window.location.reload();
+                    } else {
+                        open = false;
+                    }
+                }
+            })()).addListener(function () {
+                window.location.reload();
+            });
+        </script>
     </div>
 </div>
-<script >
-    ((function() {
-        var callbacks = [],
-            timeLimit = 50,
-            open = false;
-        setInterval(loop, 1);
-        return {
-            addListener: function(fn) {
-                callbacks.push(fn);
-            },
-            cancleListenr: function(fn) {
-                callbacks = callbacks.filter(function(v) {
-                    return v !== fn;
-                });
-            }
-        }
-        function loop() {
-            var startTime = new Date();
-            debugger;
-            if (new Date() - startTime > timeLimit) {
-                if (!open) {
-                    callbacks.forEach(function(fn) {
-                        fn.call(null);
-                    });
-                }
-                open = true;
-                window.stop();
-                alert('讨厌，不要扒我皮了，人家好害羞的！');
-                window.location.reload();
-            } else {
-                open = false;
-            }
-        }
-    })()).addListener(function() {
-        window.location.reload();
-    });
-</script>
 </body>
 </html>

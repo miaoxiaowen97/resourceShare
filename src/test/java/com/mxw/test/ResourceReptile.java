@@ -37,7 +37,7 @@ public class ResourceReptile {
 
         BatchDownloadFileTest downloadFile = new BatchDownloadFileTest();
         Proxy proxy = new Proxy( Proxy.Type.HTTP, new InetSocketAddress( "112.17.173.55",9091 ) );
-        for (int j = 51; j > 0; j--) {
+        for (int j = 39; j > 0; j--) {
             // 发送请求
             String url = "https://www.ahhhhfs.com/page/" + j + "/";
             // 标题-封面集合
@@ -46,7 +46,6 @@ public class ResourceReptile {
             Map<String, String> urlMap = new HashMap<>();
             System.out.println("开始爬取="+url);
             Document doc = Jsoup.connect(url)
-                    .proxy(proxy)
                     .headers(headers).get();
             Elements elementsByClass = doc.getElementsByClass("module posts-wrapper list");
             Node node = elementsByClass.get(0).childNode(1);
@@ -62,16 +61,22 @@ public class ResourceReptile {
                 LambdaQueryWrapper<Resource> resourceLambdaQueryWrapper = new LambdaQueryWrapper<>();
                 resourceLambdaQueryWrapper.eq(Resource::getTitle, resource.getTitle());
                 Resource oldResource = resourceMapper.selectOne(resourceLambdaQueryWrapper);
+                if (oldResource!=null){
+                    System.out.println("数据库存在，不下载图片，跳过");
+                    continue;
+                }
                 String coverUrl = coverUrlMap.getOrDefault(title, "");
                 resource.setViewCount(1L);
                 resource.setLikeCount((long) (Math.random() * 100));
                 resource.setAuthor("牛奶喵");
 
                 // 下载封面图
+
                 String[] split = coverUrl.split("/");
                 String fileName = split[split.length - 1];
-                fileName = fileName.replace(" ", "");
+                fileName = fileName.replace(" ", "").replace(".webp", ".jpg");
                 resource.setCoverUrl(fileName);
+                Thread.sleep(1000);
                 System.out.println("开始下载封面图=》" + fileName);
                 downloadFile.httpsToGet(coverUrl, fileName);
                 // 详情

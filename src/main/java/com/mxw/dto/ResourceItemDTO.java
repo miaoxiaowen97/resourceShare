@@ -28,7 +28,7 @@ public class ResourceItemDTO {
 
     private Long likeCount;
 
-    private Date createTime;
+    private String createTime;
 
-    private Date modifyTime;
+    private String modifyTime;
 }

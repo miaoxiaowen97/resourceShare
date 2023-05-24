@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -75,6 +77,12 @@ public class ResourceServiceImpl implements ResourceService {
         resourceMapper.updateById(resource);
         String resourceUrl = resource.getResourceUrl();
         String picUrl = resource.getPicUrl();
+        Date createTime = resource.getCreateTime();
+        Date updateTime = resource.getModifyTime();
+        // Date时间格式化
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dto.setCreateTime(sdf.format(createTime));
+        dto.setModifyTime(sdf.format(updateTime));
 
         List<String> resourceUrlList = JSON.parseArray(resourceUrl, String.class);
         List<String> picUrlList = JSON.parseArray(picUrl, String.class);
