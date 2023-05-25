@@ -37,7 +37,7 @@ public class ResourceReptile {
 
         BatchDownloadFileTest downloadFile = new BatchDownloadFileTest();
         Proxy proxy = new Proxy( Proxy.Type.HTTP, new InetSocketAddress( "112.17.173.55",9091 ) );
-        for (int j = 39; j > 0; j--) {
+        for (int j = 37; j > 0; j--) {
             // 发送请求
             String url = "https://www.ahhhhfs.com/page/" + j + "/";
             // 标题-封面集合
@@ -97,6 +97,7 @@ public class ResourceReptile {
 
     private void getResourceInfo(String infoUrl, Resource resource, String title, BatchDownloadFileTest downloadFile) throws Exception {
         HashMap<String, String> headers = getHeaders();
+        Thread.sleep(1000);
         Document infoDoc = Jsoup.connect(infoUrl).headers(headers).get();
         Elements infoDocElementsByClass = infoDoc.getElementsByClass("entry-content u-text-format u-clearfix");
         StringBuilder builder = new StringBuilder();
