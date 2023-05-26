@@ -43,7 +43,7 @@
                             <a class="nav-link" th:href="@{/chat}">AI助手</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">问一问</a>
+                            <a class="nav-link" href="#">今天我学到什么</a>
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0" th:action="@{/search}">
@@ -55,8 +55,8 @@
             </nav>
         </div>
     </div>
-    <div class="container" style="padding-top: 2%">
-        <iframe security="restricted" src="http://47.103.64.31:3002/#/chat/1002" frameborder="0" class="ifr" width="100%" height="850px"></iframe>
+    <div class="container" style="padding-top: 1%">
+        <iframe security="restricted" src="http://47.103.64.31:3002/#/chat/1002" frameborder="0" class="ifr" width="100%" height="820px"></iframe>
     </div>
 
 
@@ -86,42 +86,42 @@
 
 </div>
 </body>
-
-
-<style>
-
-</style>
-
-<!-- import Vue before Element -->
-<script src="js/vue.js"></script>
-<!-- import JavaScript -->
-<script src="js/index.js"></script>
 <script>
-    new Vue({
-        el: '#app',
-        data: function () {
-            return {
-                count: 10,
-                loading: false
-            }
-        },
-        computed: {
-            noMore() {
-                return this.count >= 20
+    ((function () {
+        var callbacks = [],
+            timeLimit = 50,
+            open = false;
+        setInterval(loop, 1);
+        return {
+            addListener: function (fn) {
+                callbacks.push(fn);
             },
-            disabled() {
-                return this.loading || this.noMore
-            }
-        },
-        methods: {
-            load() {
-                this.loading = true
-                setTimeout(() => {
-                    this.count += 2
-                    this.loading = false
-                }, 2000)
+            cancleListenr: function (fn) {
+                callbacks = callbacks.filter(function (v) {
+                    return v !== fn;
+                });
             }
         }
-    })
+
+        function loop() {
+            var startTime = new Date();
+            debugger;
+            if (new Date() - startTime > timeLimit) {
+                if (!open) {
+                    callbacks.forEach(function (fn) {
+                        fn.call(null);
+                    });
+                }
+                open = true;
+                window.stop();
+                alert('讨厌，不要扒我皮了，人家好害羞的！');
+                window.location.reload();
+            } else {
+                open = false;
+            }
+        }
+    })()).addListener(function () {
+        window.location.reload();
+    });
 </script>
 </html>
