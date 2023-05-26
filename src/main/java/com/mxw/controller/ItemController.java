@@ -112,4 +112,10 @@ public class ItemController {
         return "circle";
     }
 
+
+    @GetMapping(value = "/chat")
+    public String goChat(){
+        return "chat";
+    }
+
 }
