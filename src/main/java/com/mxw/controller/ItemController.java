@@ -118,4 +118,9 @@ public class ItemController {
         return "chat";
     }
 
+    @GetMapping(value = "/aircondition")
+    public String goAircondition(){
+        return "aircondition";
+    }
+
 }
