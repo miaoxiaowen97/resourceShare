@@ -32,10 +32,10 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/}">首页 <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item ">
                     <a class="nav-link" th:href="@{/itemList}">资料库</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" th:href="@{/it-resource-list}">如何成为很屌的程序员</a>
                 </li>
                 <li class="nav-item">
@@ -60,38 +60,19 @@
                 <div class="col-12">
                     <div>
                         <div>
-                            <h3 style="color: black;">[[${itemInfo.title}]]</h3>
+                            <h3 style="color: black;">[[${itResourceDTO.title}]]</h3>
                         </div>
                         <div style="padding-top: 1%;">
-                            [[${itemInfo.author}]] &nbsp;&nbsp;发布于:&nbsp;[[${itemInfo.createTime}]]
+                            [[${itResourceDTO.author}]] &nbsp;&nbsp;发布于:&nbsp;[[${itResourceDTO.createTime}]]
                         </div>
                     </div>
                     <hr align=center color=#987cb9SIZE=1>
-                    <div style="padding-top: 2%;">
-                        <h4 style="color: black;">描述</h4>
-                        <p>[[${itemInfo.content}]] </p>
+                    <div style="padding-top: 2%;" th:utext="${itResourceDTO.content}">
                     </div>
-                    <div style="padding-top: 2%;">
-                        <h4 style="color: black;">图片</h4>
-                        <img th:each="url : ${itemInfo.picUrlList}" th:src="@{${url}}" class="card-img-top">
-                    </div>
-                    <div style="padding-top: 2%;">
-                        <h4 style="color: black;">标签</h4>
-
-                        <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                            <button type="button" class="btn btn-primary btn-sm">有用的知识</button>
-                            <button type="button" class="btn btn-success btn-sm">生产力工具</button>
-                            <button type="button" class="btn btn-danger btn-sm">值得推荐</button>
-                            <button type="button" class="btn btn-warning btn-sm">效率翻倍</button>
-                            <button type="button" class="btn btn-secondary btn-sm">有趣的工具</button>
-                        </div>
-                    </div>
-                    <div style="padding-top: 2%;">
-                        <h4 style="color: black;">地址</h4>
-                        <p th:each="url : ${itemInfo.resourceUrlList}">
-                            [[${url}]]
-                        </p>
-                    </div>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        获取下载地址
+                    </button>
+                    <hr align=center color=#987cb9SIZE=1>
                     <div style="padding-top: 2%;">
                         <h4 style="color: black;">声明和投稿</h4>
                         <p>
@@ -107,7 +88,6 @@
                         </p>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="col-lg-4 d-none d-lg-block">
@@ -141,44 +121,6 @@
                 </div>
             </div>
         </div>
-        <script>
-            ((function () {
-                var callbacks = [],
-                    timeLimit = 50,
-                    open = false;
-                setInterval(loop, 1);
-                return {
-                    addListener: function (fn) {
-                        callbacks.push(fn);
-                    },
-                    cancleListenr: function (fn) {
-                        callbacks = callbacks.filter(function (v) {
-                            return v !== fn;
-                        });
-                    }
-                }
-
-                function loop() {
-                    var startTime = new Date();
-                    debugger;
-                    if (new Date() - startTime > timeLimit) {
-                        if (!open) {
-                            callbacks.forEach(function (fn) {
-                                fn.call(null);
-                            });
-                        }
-                        open = true;
-                        window.stop();
-                        alert('讨厌，不要扒我皮了，人家好害羞的！');
-                        window.location.reload();
-                    } else {
-                        open = false;
-                    }
-                }
-            })()).addListener(function () {
-                window.location.reload();
-            });
-        </script>
     </div>
 </div>
 <!-- Modal -->
@@ -192,19 +134,50 @@
                 </button>
             </div>
             <div class="modal-body" style="width: 100%; height: 100%">
-                关注公众号，了解更多玩法和后续更新
+                关注公众号，发送资源名，即可获取资源下载地址！
                 <img src="/001.jpg" style="width: 100%; height: 100%">
             </div>
         </div>
     </div>
 </div>
-<div class="container-fluid" style="padding-top: 2%;padding-bottom:2%;background-color: rgb(240, 243, 245);">
-    <div class="row justify-content-center">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            关注公众号，了解更多玩法和后续更新
-        </button>
-    </div>
-</div>
 
+<script>
+    ((function () {
+        var callbacks = [],
+            timeLimit = 50,
+            open = false;
+        setInterval(loop, 1);
+        return {
+            addListener: function (fn) {
+                callbacks.push(fn);
+            },
+            cancleListenr: function (fn) {
+                callbacks = callbacks.filter(function (v) {
+                    return v !== fn;
+                });
+            }
+        }
+
+        function loop() {
+            var startTime = new Date();
+            debugger;
+            if (new Date() - startTime > timeLimit) {
+                if (!open) {
+                    callbacks.forEach(function (fn) {
+                        fn.call(null);
+                    });
+                }
+                open = true;
+                window.stop();
+                alert('讨厌，不要扒我皮了，人家好害羞的！');
+                window.location.reload();
+            } else {
+                open = false;
+            }
+        }
+    })()).addListener(function () {
+        window.location.reload();
+    });
+</script>
 </body>
 </html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>milkCode</title>
+    <link rel="shortcut icon" href="/img/favicon.ico"/>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery.slim.min.js">
+    </script>
+    <script src="js/bootstrap.bundle.js">
+    </script>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body style="background-color: rgb(240, 243, 245);">
+
+<div class="container-fluid" style="background-color: white">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
+            <a class="navbar-brand" href="#">
+                <img src="img/author.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+                milkcode
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}">首页 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/itemList}">资料库</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/it-resource-list}">如何成为很屌的程序员</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/chat}">AI助手</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" th:href="@{/aircondition}">清凉一夏</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" th:action="@{/search}">
+                    <input class="form-control mr-sm-2" type="search" placeholder="关键字" aria-label="Search"
+                           name="queryKey">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="container-fluid" style="background-color: rgb(240, 243, 245);">
+    <div class="container-xl">
+        <div class="btn-group" style="padding-top: 2%;padding-bottom: 2%">
+            <button type="button" class="btn btn-primary">
+                编程学习资源 <span class="badge badge-light">总共 [[${pageInfo.pageCount}*${pageInfo.pageSize}]] 条</span>
+            </button>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 " style="background-color: white">
+                <div th:if="${ItItemList.size()>0}" th:each="item : ${ItItemList}" >
+                    <div class="row my-3">
+                        <div class="col-2 my-2" >
+                            <div style="padding-left: 30%">
+                                <img src="img/002.jpg"
+                                     class="d-inline-block align-top"
+                                     style="border-radius: 50px;width: 100% ;height: 100%">
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <a th:href="@{/it-resource(itemId=${(item.id)})}" style="text-decoration: none;color: #000">
+                                <div style="padding-top: 1%;">
+                                    <h4>
+                                        [[${item.title}]]
+                                    </h4>
+                                </div>
+                                <div style="padding-top: 2%;">
+                                    [[${item.author}]] &nbsp;&nbsp;发布于:&nbsp;[[${item.createTime}]]
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <hr align=center color=#987cb9SIZE=1>
+                </div>
+                <div style="padding-top: 4%;" class="d-flex justify-content-center">
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item " style="width: 90px">
+                                <span class="page-link">[[${pageInfo.pageIndex}]] / [[${pageInfo.pageCount}]]</span>
+                            </li>
+
+                            <li th:if="${pageInfo.pageIndex==1}" class="page-item disabled"
+                                style="padding-left: 3%;width: 120px">
+                                <a class="page-link">上一页</a>
+                            </li>
+
+                            <li th:if="${pageInfo.pageIndex>1}" class="page-item " style="padding-left: 3%;width: 120px">
+                                <a class="page-link" th:href="@{/it-resource-list(pageIndex=${(pageInfo.pageIndex)-1})}">上一页</a>
+                            </li>
+
+                            <li th:if="${pageInfo.pageIndex==pageInfo.pageCount}" class="page-item disabled"
+                                style="padding-left: 3%;width: 120px">
+                                <a class="page-link">下一页</a>
+                            </li>
+
+                            <li th:if="${pageInfo.pageIndex<pageInfo.pageCount}" class="page-item "
+                                style="padding-left: 3%;width: 120px">
+                                <a class="page-link" th:href="@{/it-resource-list(pageIndex=${(pageInfo.pageIndex)+1})}">下一页</a>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-lg-4 d-none d-lg-block">
+                <div>
+                    <div
+                            style="height: 128px;background-color: antiquewhite;border-top-right-radius: 20px;border-top-left-radius: 20px;">
+                        <div style="padding-top: 15%; padding-left: 5%;">
+                            <img src="img/002.jpg" width="60" height="60" class="d-inline-block align-top"
+                                 style="border-radius: 50px;">
+                        </div>
+                    </div>
+                    <div
+                            style="padding-top: 5%;padding-left: 3%;height: 100px ;background-color: white;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
+                        <div>程序员和你想的不一样</div>
+                        <div>999 关注 | 9999+ 喜欢</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">扫描二维码</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="width: 100%; height: 100%">
+                关注公众号，了解更多玩法和后续更新
+                <img src="/001.jpg" style="width: 100%; height: 100%">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="padding-top: 2%;padding-bottom:2%;background-color: rgb(240, 243, 245);">
+    <div class="row justify-content-center">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            关注公众号，了解更多玩法和后续更新
+        </button>
+    </div>
+</div>
+</body>
+
+<style>
+</style>
+</html>

@@ -2,21 +2,11 @@ package com.mxw.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mxw.dto.PageInfo;
-import com.mxw.dto.QueryParm;
 import com.mxw.dto.ResourceItemDTO;
 import com.mxw.entity.VisitorLog;
 import com.mxw.service.ResourceService;
 import com.mxw.service.VisitorLogService;
 import com.mxw.util.IpUtil;
-import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,21 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
 
-import java.io.InputStream;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.ssl.SSLContexts;
-import org.junit.Test;
-
 import javax.servlet.http.HttpServletRequest;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.util.List;
 
 
@@ -113,7 +89,7 @@ public class ItemController {
 
     @GetMapping(value = "/circle")
     public String getCircle(){
-        return "circle";
+        return "ItResourceList";
     }
 
 
