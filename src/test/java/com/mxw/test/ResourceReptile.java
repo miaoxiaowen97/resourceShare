@@ -37,7 +37,7 @@ public class ResourceReptile {
 
         BatchDownloadFileTest downloadFile = new BatchDownloadFileTest();
         Proxy proxy = new Proxy( Proxy.Type.HTTP, new InetSocketAddress( "112.17.173.55",9091 ) );
-        for (int j = 3; j > 0; j--) {
+        for (int j = 2; j > 0; j--) {
             // 发送请求
             String url = "https://www.ahhhhfs.com/page/" + j + "/";
             // 标题-封面集合

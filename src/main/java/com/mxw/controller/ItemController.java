@@ -73,9 +73,13 @@ public class ItemController {
         if (itemId<0){
             return "erro";
         }
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setPageIndex(1L);
+        pageInfo.setPageSize(5L);
         ResourceItemDTO itemInfo=resourceService.getItemInfo(itemId);
+        Page<ResourceItemDTO> page=resourceService.getListByPage(pageInfo);
+        model.addAttribute("itemList",page.getRecords());
         model.addAttribute("itemInfo",itemInfo);
-        System.out.println(itemInfo);
         return "item";
     }
 
