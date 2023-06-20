@@ -6,7 +6,6 @@ import com.mxw.entity.Resource;
 import com.mxw.mapper.ResourceMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -37,6 +36,41 @@ public class Fix {
                 resourceMapper.deleteById(i);
                 System.out.println("删除成功");
             }
+        }
+    }
+
+    @Test
+    public void deleteTitleIllegal(){
+
+        for (int i = 1; i <=1000 ; i++) {
+            Resource resource = resourceMapper.selectById(i);
+            if (resource == null) {
+                continue;
+            }
+            if (resource.getTitle().contains("大人")){
+                System.out.println(resource.getTitle()+"不合法，进行删除"+resource.getId());
+                resourceMapper.deleteById(i);
+                System.out.println("删除成功");
+            }
+            String content = resource.getContent();
+            if (content.contains("19岁")){
+                System.out.println(resource.getTitle()+"内容不合法，进行删除"+resource.getId());
+                resourceMapper.deleteById(i);
+            }
+        }
+    }
+
+    @Test
+    public void updateRefId(){
+
+        for (int i = 1; i <=1000 ; i++) {
+            Resource resource = resourceMapper.selectById(i);
+            if (resource == null) {
+                continue;
+            }
+            resource.setRefId(Long.valueOf(i+""));
+            resourceMapper.updateById(resource);
+            System.out.println("更新成功==》"+i);
         }
     }
 }
