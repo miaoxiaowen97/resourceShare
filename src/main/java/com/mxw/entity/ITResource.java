@@ -21,6 +21,8 @@ public class ITResource {
 
     private String content;
 
+    private Integer type;
+
     private String author;
 
     private Long viewCount;

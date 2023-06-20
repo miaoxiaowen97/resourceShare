@@ -92,6 +92,9 @@ public class ResourceServiceImpl implements ResourceService {
         if (CollectionUtils.isEmpty(picUrlList)){
             picUrlList.add("001.jpg");
         }
+        if (CollectionUtils.isEmpty(resourceUrlList)){
+            resourceUrlList.add("http://milkcode.top/001.jpg");
+        }
         dto.setResourceUrlList(resourceUrlList);
         dto.setPicUrlList(picUrlList);
 

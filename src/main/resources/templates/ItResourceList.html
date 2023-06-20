@@ -50,7 +50,7 @@
                 <form class="form-inline my-2 my-lg-0" th:action="@{/search}">
                     <input class="form-control mr-sm-2" type="search" placeholder="关键字" aria-label="Search"
                            name="queryKey">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">工具搜索</button>
                 </form>
             </div>
         </nav>
@@ -58,20 +58,42 @@
 </div>
 <div class="container-fluid" style="background-color: rgb(240, 243, 245);">
     <div class="container-xl">
-        <div class="btn-group" style="padding-top: 2%;padding-bottom: 2%">
-            <button type="button" class="btn btn-primary">
-                编程学习资源 <span class="badge badge-light">总共 [[${pageInfo.pageCount}*${pageInfo.pageSize}]] 条</span>
-            </button>
+        <div style="padding-top: 2%;padding-bottom: 2%">
+            <div class="btn-group">
+                <button th:if="${pageInfo.type ==1}" type="button" class="btn btn-info dropdown-toggle"
+                        data-toggle="dropdown" aria-expanded="false">Java
+                </button>
+                <button th:if="${pageInfo.type ==2}" type="button" class="btn btn-info dropdown-toggle"
+                        data-toggle="dropdown" aria-expanded="false">C/C++/C#
+                </button>
+                <button th:if="${pageInfo.type ==3}" type="button" class="btn btn-info dropdown-toggle"
+                        data-toggle="dropdown" aria-expanded="false">Python
+                </button>
+                <button th:if="${pageInfo.type ==4}" type="button" class="btn btn-info dropdown-toggle"
+                        data-toggle="dropdown" aria-expanded="false">web前端
+                </button>
+                <button th:if="${pageInfo.type ==5}" type="button" class="btn btn-info dropdown-toggle"
+                        data-toggle="dropdown" aria-expanded="false">iOS
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" th:href="@{/it-resource-list?type=1}">Java</a>
+                    <a class="dropdown-item" th:href="@{/it-resource-list?type=2}">C/C++/C#</a>
+                    <a class="dropdown-item" th:href="@{/it-resource-list?type=3}">Python</a>
+                    <a class="dropdown-item" th:href="@{/it-resource-list?type=4}">web前端</a>
+                    <a class="dropdown-item" th:href="@{/it-resource-list?type=5}">iOS</a>
+                </div>
+            </div>
+            <span class="badge badge-light">总共 [[${pageInfo.pageCount}*${pageInfo.pageSize}]] 条</span>
         </div>
         <div class="row">
             <div class="col-lg-8 " style="background-color: white">
-                <div th:if="${ItItemList.size()>0}" th:each="item : ${ItItemList}" >
+                <div th:if="${ItItemList.size()>0}" th:each="item : ${ItItemList}">
                     <div class="row my-3">
-                        <div class="col-2 my-2" >
-                            <div style="padding-left: 30%">
+                        <div class="col-2 my-2">
+                            <div style="width: 100% ;height: 100%">
                                 <img src="img/002.jpg"
                                      class="d-inline-block align-top"
-                                     style="border-radius: 50px;width: 100% ;height: 100%">
+                                     style="width: 100% ;height: 100%">
                             </div>
                         </div>
                         <div class="col-10">
@@ -101,8 +123,10 @@
                                 <a class="page-link">上一页</a>
                             </li>
 
-                            <li th:if="${pageInfo.pageIndex>1}" class="page-item " style="padding-left: 3%;width: 120px">
-                                <a class="page-link" th:href="@{/it-resource-list(pageIndex=${(pageInfo.pageIndex)-1})}">上一页</a>
+                            <li th:if="${pageInfo.pageIndex>1}" class="page-item "
+                                style="padding-left: 3%;width: 120px">
+                                <a class="page-link"
+                                   th:href="@{/it-resource-list(pageIndex=${(pageInfo.pageIndex)-1},type=${(pageInfo.type)})}">上一页</a>
                             </li>
 
                             <li th:if="${pageInfo.pageIndex==pageInfo.pageCount}" class="page-item disabled"
@@ -112,7 +136,8 @@
 
                             <li th:if="${pageInfo.pageIndex<pageInfo.pageCount}" class="page-item "
                                 style="padding-left: 3%;width: 120px">
-                                <a class="page-link" th:href="@{/it-resource-list(pageIndex=${(pageInfo.pageIndex)+1})}">下一页</a>
+                                <a class="page-link"
+                                   th:href="@{/it-resource-list(pageIndex=${(pageInfo.pageIndex)+1},type=${(pageInfo.type)})}">下一页</a>
                             </li>
 
                         </ul>

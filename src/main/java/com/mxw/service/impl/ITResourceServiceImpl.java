@@ -43,6 +43,7 @@ public class ITResourceServiceImpl implements ITResourceService {
 
         LambdaQueryWrapper<ITResource> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.orderByDesc(ITResource::getId);
+        queryWrapper.eq(ITResource::getType,pageInfo.getType());
         Page<ITResource> resourcePage = itResourceMapper.selectPage(new Page<>(pageInfo.getPageIndex(),pageInfo.getPageSize()), queryWrapper);
         List<ITResource> records = resourcePage.getRecords();
 

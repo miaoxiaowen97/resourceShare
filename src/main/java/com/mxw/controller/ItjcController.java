@@ -33,10 +33,11 @@ public class ItjcController {
     }
 
     @GetMapping(value = "/it-resource-list")
-    public String getList(@RequestParam(value = "pageIndex",defaultValue = "1") Long pageIndex, Model model){
+    public String getList(@RequestParam(value = "pageIndex",defaultValue = "1") Long pageIndex,@RequestParam(value = "type",defaultValue = "1") Integer type, Model model){
         PageInfo pageInfo = new PageInfo();
         pageInfo.setPageIndex(pageIndex);
         pageInfo.setPageSize(8L);
+        pageInfo.setType(type);
         Page<ITResourceDTO> page=itResourceService.getListByPage(pageInfo);
         pageInfo.setPageCount(page.getTotal()/pageInfo.getPageSize());
         model.addAttribute("ItItemList",page.getRecords());

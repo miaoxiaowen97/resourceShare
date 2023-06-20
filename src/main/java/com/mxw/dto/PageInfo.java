@@ -22,4 +22,9 @@ public class PageInfo {
      * 总页数
      */
     private Long pageCount;
+
+    /**
+     * 总页数
+     */
+    private Integer type;
 }
