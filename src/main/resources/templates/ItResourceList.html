@@ -75,12 +75,23 @@
                 <button th:if="${pageInfo.type ==5}" type="button" class="btn btn-info dropdown-toggle"
                         data-toggle="dropdown" aria-expanded="false">iOS
                 </button>
+                <button th:if="${pageInfo.type ==6}" type="button" class="btn btn-info dropdown-toggle"
+                        data-toggle="dropdown" aria-expanded="false">数据库
+                </button>
+                <button th:if="${pageInfo.type ==7}" type="button" class="btn btn-info dropdown-toggle"
+                        data-toggle="dropdown" aria-expanded="false">产品经理/运营
+                </button>
+                <button th:if="${pageInfo.type ==8}" type="button" class="btn btn-info dropdown-toggle"
+                        data-toggle="dropdown" aria-expanded="false">其它
+                </button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" th:href="@{/it-resource-list?type=1}">Java</a>
                     <a class="dropdown-item" th:href="@{/it-resource-list?type=2}">C/C++/C#</a>
                     <a class="dropdown-item" th:href="@{/it-resource-list?type=3}">Python</a>
                     <a class="dropdown-item" th:href="@{/it-resource-list?type=4}">web前端</a>
                     <a class="dropdown-item" th:href="@{/it-resource-list?type=5}">iOS</a>
+                    <a class="dropdown-item" th:href="@{/it-resource-list?type=6}">数据库</a>
+                    <a class="dropdown-item" th:href="@{/it-resource-list?type=7}">其它</a>
                 </div>
             </div>
             <span class="badge badge-light">总共 [[${pageInfo.pageCount}*${pageInfo.pageSize}]] 条</span>
