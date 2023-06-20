@@ -70,7 +70,7 @@
                 </div>
                 <div class=" col-sm-3" style="padding-top: 2%;" th:if="${itemList.size()>0}" th:each="item : ${itemList}">
                     <div class="card mb-3" style="height: 100%;border: none;">
-                        <a th:href="@{/item(itemId=${(item.id)})}" style="text-decoration: none;color: #000">
+                        <a th:href="@{/item(itemId=${(item.id)})}" style="text-decoration: none;color: #000"  target="_blank">
                             <img th:src="@{${item.coverUrl}}" class="card-img-top" style="border-radius: 10px">
                             <h5 class="card-title" th:text="${item.title}"></h5>
                         </a>
@@ -125,7 +125,16 @@
                 </nav>
             </div>
         </div>
-
+        <!-- miao -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5298217722174626"
+             data-ad-slot="1016797412"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
 </div>
 <!-- Modal -->
