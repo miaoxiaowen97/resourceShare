@@ -1,7 +1,9 @@
 //package com.mxw.test;
 //
 //import org.apache.http.HttpEntity;
+//import org.apache.http.HttpHost;
 //import org.apache.http.HttpResponse;
+//import org.apache.http.client.config.RequestConfig;
 //import org.apache.http.client.methods.HttpGet;
 //import org.apache.http.conn.ssl.NoopHostnameVerifier;
 //import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -39,7 +41,7 @@
 //     * @throws Exception 异常
 //     */
 //    @Test
-//    public void httpsToGet(String apiHttp,String fileName ) throws Exception {
+//    public void httpsToGet(String apiHttp,String fileName,String ip,Integer port ) throws Exception {
 ////        文件下载存储路径
 //        String savePath = "E:\\code\\mycode\\pic";
 ////        https文件下载链接
@@ -47,8 +49,11 @@
 ////        忽略对服务器端证书的校验
 //        SSLConnectionSocketFactory scsf = new SSLConnectionSocketFactory(SSLContexts.custom().loadTrustMaterial(null, new TrustSelfSignedStrategy()).build(),
 //                NoopHostnameVerifier.INSTANCE);
+//        HttpHost proxy=new HttpHost(ip,port);
+//        RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
 //        CloseableHttpClient client = HttpClients.custom().setSSLSocketFactory(scsf).build();
 //        HttpGet httpget = new HttpGet(apiHttp);
+//        httpget.setConfig(config);
 //        HttpResponse response = client.execute(httpget);
 //        HttpEntity entity = response.getEntity();
 //        InputStream is = entity.getContent();

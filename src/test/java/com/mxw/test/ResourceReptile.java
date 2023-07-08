@@ -33,38 +33,61 @@
 //    public void getResource() throws Exception {
 //        // 请求头封装
 //        HashMap<String, String> headers = getHeaders();
+//        HashMap<String, String> proxyMap = getHeaders();
 //
 //        BatchDownloadFileTest downloadFile = new BatchDownloadFileTest();
-//        Proxy proxy = new Proxy( Proxy.Type.HTTP, new InetSocketAddress( "112.17.173.55",9091 ) );
-//        for (int j = 3; j > 0; j--) {
-//            // 发送请求
-//            String url = "https://www.ahhhhfs.com/page/" + j + "/";
-//            // 标题-封面集合
-//            Map<String, String> coverUrlMap = new HashMap<>();
-//            // 标题-地址集合
-//            Map<String, String> urlMap = new HashMap<>();
-//            System.out.println("开始爬取="+url);
-//            Document doc = Jsoup.connect(url)
-//                    .headers(headers).get();
-//            Elements elementsByClass = doc.getElementsByClass("module posts-wrapper list");
-//            Node node = elementsByClass.get(0).childNode(1);
-//            List<Node> nodes = node.childNodes();
+//        String proxyUrl="https://ip.ihuan.me/?page=4ce63706";
+//        Document proDoc = Jsoup.connect(proxyUrl).headers(headers).get();
+//        Elements table = proDoc.getElementsByClass("table table-hover table-bordered");
+//        Element element = table.get(0);
+//        Node proNode = element.childNode(1);
+//        for (Node childNode : proNode.childNodes()) {
+//            String nodeName = childNode.nodeName();
+//            Node ipNode = childNode.childNode(0);
+//            String ip = ipNode.childNode(0).childNode(1).toString();
+//            String port = childNode.childNode(1).childNode(0).toString();
+//            proxyMap.put(ip,port);
+//        }
+//        for (Map.Entry<String, String> entry : proxyMap.entrySet()) {
+//            String ip = entry.getKey();
+//            String port = entry.getValue();
+//            System.out.println(ip+":"+port);
+//            try {
+//                Proxy proxy = new Proxy( Proxy.Type.HTTP, new InetSocketAddress( ip,Integer.valueOf(port) ) );
+//                for (int j =  2; j > 0; j--) {
+//                    // 发送请求
+//                    String url = "https://www.ahhhhfs.com/page/" + j + "/";
+//                    // 标题-封面集合
+//                    Map<String, String> coverUrlMap = new HashMap<>();
+//                    // 标题-地址集合
+//                    Map<String, String> urlMap = new HashMap<>();
+//                    System.out.println("开始爬取="+url);
+//                    Document doc = Jsoup.connect(url).proxy(proxy)
+//                            .headers(headers).get();
+//                    Elements elementsByClass = doc.getElementsByClass("module posts-wrapper list");
+//                    Node node = elementsByClass.get(0).childNode(1);
+//                    List<Node> nodes = node.childNodes();
 //
-//            // 获取详情地址
-//            List<String> urlList = getInfoUrl(coverUrlMap, urlMap, nodes);
-//            for (int i = urlList.size()-1; i >= 0; i--) {
-//                System.out.println(i);
-//                String infoUrl=urlList.get(i);
-//                saveResource(downloadFile, coverUrlMap, urlMap, infoUrl);
+//                    // 获取详情地址
+//                    List<String> urlList = getInfoUrl(coverUrlMap, urlMap, nodes);
+//                    for (int i = urlList.size()-1; i >= 0; i--) {
+//                        System.out.println(i);
+//                        String infoUrl=urlList.get(i);
+//                        saveResource(downloadFile, coverUrlMap, urlMap, infoUrl,ip,port);
 //
-//            }
+//                    }
 ////            for (String infoUrl : urlList) {
 ////                saveResource(downloadFile, coverUrlMap, urlMap, infoUrl);
 ////            }
+//                }
+//            }catch (Exception e){
+//                System.out.println(e.getMessage());
+//            }
+//
 //        }
 //    }
 //
-//    private void saveResource(BatchDownloadFileTest downloadFile, Map<String, String> coverUrlMap, Map<String, String> urlMap, String infoUrl) throws Exception {
+//    private void saveResource(BatchDownloadFileTest downloadFile, Map<String, String> coverUrlMap, Map<String, String> urlMap, String infoUrl,String ip,String port) throws Exception {
 //        String title = urlMap.get(infoUrl);
 //        Resource resource = new Resource();
 //        resource.setTitle(title);
@@ -75,6 +98,11 @@
 //            System.out.println(title+"==数据库存在，不下载图片，跳过");
 //            return;
 //        }
+//        if (resource.getTitle().contains("大人")){
+//            System.out.println(resource.getTitle()+"不合法，进行跳过"+resource.getId());
+//            return;
+//        }
+//
 //        String coverUrl = coverUrlMap.getOrDefault(title, "");
 //        resource.setViewCount(1L);
 //        resource.setLikeCount((long) (Math.random() * 100));
@@ -88,10 +116,14 @@
 //        resource.setCoverUrl(fileName);
 //        Thread.sleep(1000);
 //        System.out.println("开始下载封面图=》" + fileName);
-//        downloadFile.httpsToGet(coverUrl, fileName);
+//        downloadFile.httpsToGet(coverUrl, fileName,ip,Integer.valueOf(port));
 //        // 详情
-//        getResourceInfo(infoUrl, resource, title, downloadFile);
-//
+//        getResourceInfo(infoUrl, resource, title, downloadFile,ip,port);
+//        String content = resource.getContent();
+//        if (content.contains("19岁")){
+//            System.out.println(resource.getTitle()+"内容不合法，进行跳过"+resource.getId());
+//            return;
+//        }
 //        if (Objects.nonNull(oldResource)) {
 //            System.out.println("已存在进行更新");
 //            Integer id = oldResource.getId();
@@ -103,7 +135,7 @@
 //        }
 //    }
 //
-//    private void getResourceInfo(String infoUrl, Resource resource, String title, BatchDownloadFileTest downloadFile) throws Exception {
+//    private void getResourceInfo(String infoUrl, Resource resource, String title, BatchDownloadFileTest downloadFile,String ip, String port ) throws Exception {
 //        HashMap<String, String> headers = getHeaders();
 //        Thread.sleep(1000);
 //        Document infoDoc = Jsoup.connect(infoUrl).headers(headers).get();
@@ -157,7 +189,7 @@
 //                System.out.println("开始下载资源图=》" + fileName);
 //                picNameList.add(fileName);
 //                Thread.sleep(1000);
-//                downloadFile.httpsToGet(pic, fileName);
+//                downloadFile.httpsToGet(pic, fileName,ip,Integer.valueOf(port));
 //            }catch (Exception e){
 //                System.out.println("开始下载资源图出错了。跳过");
 //            }
