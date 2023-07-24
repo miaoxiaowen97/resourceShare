@@ -36,7 +36,7 @@ public class ResourceReptile {
 
         BatchDownloadFileTest downloadFile = new BatchDownloadFileTest();
         Proxy proxy = new Proxy( Proxy.Type.HTTP, new InetSocketAddress( "112.17.173.55",9091 ) );
-        for (int j = 2; j > 0; j--) {
+        for (int j = 4; j > 0; j--) {
             // 发送请求
             String url = "https://www.ahhhhfs.com/page/" + j + "/";
             // 标题-封面集合
@@ -46,8 +46,8 @@ public class ResourceReptile {
             System.out.println("开始爬取="+url);
             Document doc = Jsoup.connect(url)
                     .headers(headers).get();
-            Elements elementsByClass = doc.getElementsByClass("module posts-wrapper list");
-            Node node = elementsByClass.get(0).childNode(1);
+            Elements elementsByClass = doc.getElementsByClass("posts-warp row row-cols-1 row-cols-md-2 g-2 g-md-3 g-lg-4");
+            Node node = elementsByClass.get(0);
             List<Node> nodes = node.childNodes();
 
             // 获取详情地址
@@ -107,7 +107,7 @@ public class ResourceReptile {
         HashMap<String, String> headers = getHeaders();
         Thread.sleep(1000);
         Document infoDoc = Jsoup.connect(infoUrl).headers(headers).get();
-        Elements infoDocElementsByClass = infoDoc.getElementsByClass("entry-content u-text-format u-clearfix");
+        Elements infoDocElementsByClass = infoDoc.getElementsByTag("article");
         StringBuilder builder = new StringBuilder();
         Elements p = infoDocElementsByClass.first().getElementsByTag("p");
         Elements a = infoDocElementsByClass.first().getElementsByTag("a");
@@ -176,18 +176,15 @@ public class ResourceReptile {
             int i = node1.childNodeSize();
             if (i > 0) {
                 Node node2 = node1.childNode(1);
-                List<Node> nodes1 = node2.childNodes();
-                Node node3 = node2.childNode(1);
-                Node node4 = node3.childNode(0);
-                Node node5 = node4.childNode(0);
-                Attributes attributes = node5.attributes();
+                Node node3 = node2.childNode(3);
+                Node itemNode = node3.childNode(1);
+
+                Attributes attributes = itemNode.attributes();
                 String href = attributes.get("href");
                 urlList.add(href);
                 String title = attributes.get("title");
-                Node node6 = node5.childNode(0);
-                Attributes attributes1 = node6.attributes();
-                String src = attributes1.get("data-src");
-                coverUrlMap.put(title, src);
+                String picUrl = attributes.get("data-bg");
+                coverUrlMap.put(title, picUrl);
                 urlMap.put(href, title);
             }
         }
