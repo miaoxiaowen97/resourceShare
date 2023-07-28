@@ -48,7 +48,7 @@ public class ResourceServiceImpl implements ResourceService {
         Page<ResourceItemDTO> dtoPage = new Page<>();
 
         LambdaQueryWrapper<Resource> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.orderByDesc(Resource::getId);
+        queryWrapper.orderByDesc(Resource::getRefId);
         Page<Resource> resourcePage = resourceMapper.selectPage(new Page<>(pageInfo.getPageIndex(),pageInfo.getPageSize()), queryWrapper);
         List<Resource> records = resourcePage.getRecords();
 
@@ -59,6 +59,7 @@ public class ResourceServiceImpl implements ResourceService {
         List<ResourceItemDTO> dtoList= resourcePage.getRecords().stream().map(item -> {
             ResourceItemDTO dto = new ResourceItemDTO();
             BeanUtils.copyProperties(item, dto);
+            dto.setId(item.getRefId());
             return dto;
         }).collect(Collectors.toList());
 
@@ -72,9 +73,13 @@ public class ResourceServiceImpl implements ResourceService {
     public ResourceItemDTO getItemInfo(Long itemId) {
 
         ResourceItemDTO dto=new ResourceItemDTO();
-        Resource resource = resourceMapper.selectById(itemId);
+        LambdaQueryWrapper<Resource> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Resource::getRefId,itemId);
+        Resource resource = resourceMapper.selectOne(queryWrapper);
         resource.setViewCount(resource.getViewCount()+1);
+        // 保存访问量
         resourceMapper.updateById(resource);
+
         String resourceUrl = resource.getResourceUrl();
         String picUrl = resource.getPicUrl();
         Date createTime = resource.getCreateTime();
@@ -97,6 +102,7 @@ public class ResourceServiceImpl implements ResourceService {
         }
         dto.setResourceUrlList(resourceUrlList);
         dto.setPicUrlList(picUrlList);
+        dto.setId(resource.getRefId());
 
         return dto;
     }
@@ -107,11 +113,11 @@ public class ResourceServiceImpl implements ResourceService {
         LambdaQueryWrapper<Resource> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.like(Resource::getTitle,queryKey);
         List<Resource> resourceList = resourceMapper.selectList(queryWrapper);
-        List<ResourceItemDTO> itemDTOS = resourceList.stream().map(item -> {
+        return resourceList.stream().map(item -> {
             ResourceItemDTO dto = new ResourceItemDTO();
             BeanUtils.copyProperties(item, dto);
+            dto.setId(item.getRefId());
             return dto;
         }).collect(Collectors.toList());
-        return itemDTOS;
     }
 }

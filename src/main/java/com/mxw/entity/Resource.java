@@ -27,7 +27,7 @@ public class Resource {
 
     private Long likeCount;
 
-    private Long refId;
+    private Integer refId;
 
     private String picUrl;
 
