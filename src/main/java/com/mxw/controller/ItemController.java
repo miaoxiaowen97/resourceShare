@@ -87,17 +87,6 @@ public class ItemController {
     }
 
 
-    @GetMapping(value = "/circle")
-    public String getCircle(){
-        return "ItResourceList";
-    }
-
-
-    @GetMapping(value = "/chat")
-    public String goChat(){
-        return "chat";
-    }
-
     @GetMapping(value = "/aircondition")
     public String goAircondition(){
         return "aircondition";

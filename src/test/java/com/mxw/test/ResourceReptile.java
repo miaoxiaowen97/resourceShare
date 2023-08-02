@@ -35,15 +35,14 @@ public class ResourceReptile {
         HashMap<String, String> headers = getHeaders();
 
         BatchDownloadFileTest downloadFile = new BatchDownloadFileTest();
-        Proxy proxy = new Proxy( Proxy.Type.HTTP, new InetSocketAddress( "112.17.173.55",9091 ) );
-        for (int j = 4; j > 0; j--) {
+        for (int j = 6; j > 0; j--) {
             // 发送请求
             String url = "https://www.ahhhhfs.com/page/" + j + "/";
             // 标题-封面集合
             Map<String, String> coverUrlMap = new HashMap<>();
             // 标题-地址集合
             Map<String, String> urlMap = new HashMap<>();
-            System.out.println("开始爬取="+url);
+            System.out.println("开始爬取=" + url);
             Document doc = Jsoup.connect(url)
                     .headers(headers).get();
             Elements elementsByClass = doc.getElementsByClass("posts-warp row row-cols-1 row-cols-md-2 g-2 g-md-3 g-lg-4");
@@ -52,15 +51,11 @@ public class ResourceReptile {
 
             // 获取详情地址
             List<String> urlList = getInfoUrl(coverUrlMap, urlMap, nodes);
-            for (int i = urlList.size()-1; i >= 0; i--) {
+            for (int i = urlList.size() - 1; i >= 0; i--) {
                 System.out.println(i);
-                String infoUrl=urlList.get(i);
+                String infoUrl = urlList.get(i);
                 saveResource(downloadFile, coverUrlMap, urlMap, infoUrl);
-
             }
-//            for (String infoUrl : urlList) {
-//                saveResource(downloadFile, coverUrlMap, urlMap, infoUrl);
-//            }
         }
     }
 
@@ -71,10 +66,12 @@ public class ResourceReptile {
         LambdaQueryWrapper<Resource> resourceLambdaQueryWrapper = new LambdaQueryWrapper<>();
         resourceLambdaQueryWrapper.eq(Resource::getTitle, resource.getTitle());
         Resource oldResource = resourceMapper.selectOne(resourceLambdaQueryWrapper);
-        if (oldResource!=null){
-            System.out.println(title+"==数据库存在，不下载图片，跳过");
+
+        if (oldResource != null) {
+            System.out.println(title + "==数据库存在，不下载图片，跳过");
             return;
         }
+
         String coverUrl = coverUrlMap.getOrDefault(title, "");
         resource.setViewCount(1L);
         resource.setLikeCount((long) (Math.random() * 100));
@@ -92,15 +89,38 @@ public class ResourceReptile {
         // 详情
         getResourceInfo(infoUrl, resource, title, downloadFile);
 
-        if (Objects.nonNull(oldResource)) {
-            System.out.println("已存在进行更新");
-            Integer id = oldResource.getId();
-            resource.setId(id);
-            resourceMapper.updateById(resource);
-        } else {
-            resourceMapper.insert(resource);
-            System.out.println("保存成功");
+        //if (validContent(resource)) return;
+
+        resourceMapper.insert(resource);
+        System.out.println("保存成功");
+
+    }
+
+    private boolean validContent(Resource resource) {
+        if (resource.getTitle().contains("大人")) {
+            System.out.println(resource.getTitle() + "不合法，不保存" + resource.getId());
+            return true;
         }
+
+        if (resource.getTitle().contains("奶子")) {
+            System.out.println(resource.getTitle() + "不合法，不保存" + resource.getId());
+            return true;
+        }
+
+        String content = resource.getContent();
+        if (content.contains("19岁")) {
+            System.out.println(resource.getTitle() + "不合法，不保存" + resource.getId());
+            return true;
+        }
+
+        String resourceUrl = resource.getResourceUrl();
+        List<String> resourceUrlList = JSON.parseArray(resourceUrl, String.class);
+
+        if (resourceUrlList.isEmpty()) {
+            System.out.println(resource.getTitle() + "资源链接为空，不保存" + resource.getId());
+            return true;
+        }
+        return false;
     }
 
     private void getResourceInfo(String infoUrl, Resource resource, String title, BatchDownloadFileTest downloadFile) throws Exception {
@@ -158,7 +178,7 @@ public class ResourceReptile {
                 picNameList.add(fileName);
                 Thread.sleep(1000);
                 downloadFile.httpsToGet(pic, fileName);
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("开始下载资源图出错了。跳过");
             }
             i = i + 1;
